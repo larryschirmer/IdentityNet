@@ -1,68 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Identity Net
 
-## Available Scripts
+### What is Identity Net?
 
-In the project directory, you can run:
+The name for this project comes from the [identity matrix](https://www.khanacademy.org/math/precalculus/precalc-matrices/properties-of-matrix-multiplication/a/intro-to-identity-matrices). The network is trained to return the same number as its input (between 0 and 1). Developing deep neural networks is tough, and the point of this project is to demonstrate how to train a model and deploy it to an existing react app. It's contrived, but it's also self-validating.
 
-### `npm start`
+The model is built and trained with [pytorch](https://pytorch.org/) and saved as an [onnx](https://onnx.ai/) model. I like the flexibility I have in building networks in pytorch and the community around it is 👍. Onnx models are very light weight (`30kb`), and are mostly straightforward to setup. I say mostly because it's still new and the community (and code examples are few and far between). 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### How is this project organized?
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+There are two parts to this project that make up an example process of designing a model, training a model, and embedding it in a react app.
 
-### `npm test`
+1. `Generate_Model.ipynb` is a Jupyter Notebook that steps through the process of configuring the network, building the dataset, training, and saving. An online version of this notebook is available here. [https://notebooks.azure.com/larryschirmer/projects/identitynet](https://notebooks.azure.com/larryschirmer/projects/identitynet)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+2. `src/MainPage/MainPage.js` is the component that uses the saved model. The component uses a slider as input and passes the value to `src/MainPage/useONNX.js` which generates the value and passes it back. An online version of this app is available here [https://codesandbox.io/s/k0yy89n57o](https://codesandbox.io/s/k0yy89n57o)
